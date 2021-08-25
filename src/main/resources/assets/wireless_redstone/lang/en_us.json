@@ -1,0 +1,5 @@
+{
+  "block.wireless_redstone.transmitter": "Wireless Redstone Transmitter",
+  "block.wireless_redstone.receiver": "Wireless Redstone Receiver",
+  "screen.wireless_redstone.set_frequency": "Set frequency"
+}

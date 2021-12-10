@@ -5,7 +5,6 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.TickScheduler;
 import net.minecraft.world.World;
 import net.onpointcoding.wirelessredstone.MyComponents;
 import net.onpointcoding.wirelessredstone.WirelessRedstone;
@@ -34,7 +33,7 @@ public class WirelessTransmitterBlock extends WirelessFrequencyBlock {
         if (state.hasBlockEntity() && !state.isOf(newState.getBlock())) {
             world.removeBlockEntity(pos);
             updateWirelessFrequency(world, pos, false, 0);
-            sendTickScheduleToReceivers(world);
+            WirelessRedstone.sendTickScheduleToReceivers(world);
         }
     }
 
@@ -61,13 +60,7 @@ public class WirelessTransmitterBlock extends WirelessFrequencyBlock {
         else
             transmitting.removeIf(transmittingFrequencyEntry -> transmittingFrequencyEntry.pos().hashCode() == pos.hashCode());
 
-        sendTickScheduleToReceivers(world);
-    }
-
-    void sendTickScheduleToReceivers(World world) {
-        TickScheduler<Block> blockTickScheduler = world.getBlockTickScheduler();
-        for (BlockPos p : MyComponents.FrequencyStorage.get(world).getReceivers())
-            blockTickScheduler.schedule(p, WirelessRedstone.WIRELESS_RECEIVER, 2);
+        WirelessRedstone.sendTickScheduleToReceivers(world);
     }
 
     @Nullable

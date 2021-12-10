@@ -15,7 +15,11 @@ import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.World;
+import net.minecraft.world.tick.OrderedTick;
+import net.minecraft.world.tick.TickScheduler;
 import net.onpointcoding.wirelessredstone.block.WirelessReceiverBlock;
 import net.onpointcoding.wirelessredstone.block.WirelessTransmitterBlock;
 import net.onpointcoding.wirelessredstone.block.entity.WirelessReceiverBlockEntity;
@@ -47,5 +51,11 @@ public class WirelessRedstone implements ModInitializer {
                     wirelessFrequencyScreenHandler.getPropertyDelegate().set(0, buf.readInt());
             }
         }));
+    }
+
+    public static void sendTickScheduleToReceivers(World world) {
+        TickScheduler<Block> blockTickScheduler = world.getBlockTickScheduler();
+        for (BlockPos p : MyComponents.FrequencyStorage.get(world).getReceivers())
+            blockTickScheduler.scheduleTick(OrderedTick.create(WirelessRedstone.WIRELESS_RECEIVER, p));
     }
 }

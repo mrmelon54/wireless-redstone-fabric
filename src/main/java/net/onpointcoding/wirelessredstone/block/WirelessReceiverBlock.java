@@ -10,6 +10,7 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.onpointcoding.wirelessredstone.MyComponents;
+import net.onpointcoding.wirelessredstone.WirelessRedstone;
 import net.onpointcoding.wirelessredstone.block.entity.WirelessReceiverBlockEntity;
 import org.jetbrains.annotations.Nullable;
 
@@ -27,10 +28,6 @@ public class WirelessReceiverBlock extends WirelessFrequencyBlock {
                 Boolean isLit = state.get(Properties.LIT);
                 long frequency = wirelessReceiverBlockEntity.getFrequency();
                 boolean shouldBeLit = hasLitTransmitterOnFrequency(world, frequency);
-                System.out.println("WirelessReceiverBlock got scheduledTick");
-                System.out.println("Freq: " + frequency);
-                System.out.println("Is lit: " + isLit);
-                System.out.println("Should be lit: " + shouldBeLit);
                 if (shouldBeLit != isLit)
                     world.setBlockState(pos, state.with(Properties.LIT, shouldBeLit), Block.NOTIFY_ALL);
             } else world.setBlockState(pos, state.with(Properties.LIT, false), Block.NOTIFY_ALL);
@@ -45,6 +42,7 @@ public class WirelessReceiverBlock extends WirelessFrequencyBlock {
     @Deprecated
     public void onBlockAdded(BlockState state, World world, BlockPos pos, BlockState oldState, boolean notify) {
         MyComponents.FrequencyStorage.get(world).getReceivers().add(pos);
+        WirelessRedstone.sendTickScheduleToReceivers(world);
     }
 
     @Deprecated

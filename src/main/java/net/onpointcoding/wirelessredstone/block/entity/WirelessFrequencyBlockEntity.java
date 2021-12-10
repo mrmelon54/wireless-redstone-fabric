@@ -34,10 +34,9 @@ public class WirelessFrequencyBlockEntity<T extends WirelessFrequencyBlockEntity
     }
 
     @Override
-    public NbtCompound writeNbt(NbtCompound nbt) {
+    public void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
         nbt.putInt("frequency", frequency);
-        return nbt;
     }
 
     public int getFrequency() {

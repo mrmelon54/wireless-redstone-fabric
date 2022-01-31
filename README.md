@@ -4,7 +4,7 @@
 
 Requires the [Fabric Loader](https://fabricmc.net/use/), [Fabric API](https://www.curseforge.com/minecraft/mc-mods/fabric-api) and [Cardinal Components API](https://www.curseforge.com/minecraft/mc-mods/cardinal-components)
 
-For v2.0.0 (mc 1.18) please use "Cardinal-Components-API-4.0.1.jar" from [github.com/MrMelon54/Cardinal-Components-API](https://github.com/MrMelon54/Cardinal-Components-API/releases/tag/4.0.1)
+Please upgrade for v2.0.1 (for Minecraft 1.18+) and use cardinal components API v4.1.0 from [modrinth.com/mod/cardinal-components-api](https://modrinth.com/mod/cardinal-components-api)
 
 ## Setup
 

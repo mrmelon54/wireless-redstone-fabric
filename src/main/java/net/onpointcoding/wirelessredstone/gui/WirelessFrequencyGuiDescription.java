@@ -22,7 +22,7 @@ public class WirelessFrequencyGuiDescription extends SyncedGuiDescription {
     final Pattern numericCheckerPattern = Pattern.compile("^-?[0-9]+$");
     static final int PROPERTY_COUNT = 1;
     private int wirelessFrequencyInput;
-    private WTextField wirelessFrequencyBox;
+    private final WTextField wirelessFrequencyBox;
 
     public WirelessFrequencyGuiDescription(int syncId, PlayerInventory playerInventory, ScreenHandlerContext context) {
         super(WirelessRedstone.WIRELESS_FREQUENCY_SCREEN, syncId, playerInventory, getBlockInventory(context, 0), getBlockPropertyDelegate(context, PROPERTY_COUNT));

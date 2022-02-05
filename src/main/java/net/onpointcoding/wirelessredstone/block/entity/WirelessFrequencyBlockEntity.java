@@ -15,6 +15,7 @@ import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
+import net.onpointcoding.wirelessredstone.WirelessRedstone;
 import net.onpointcoding.wirelessredstone.gui.WirelessFrequencyGuiDescription;
 import org.jetbrains.annotations.Nullable;
 
@@ -52,7 +53,10 @@ public class WirelessFrequencyBlockEntity<T extends WirelessFrequencyBlockEntity
 
         @Override
         public void set(int index, int value) {
-            if (index == 0) frequency = value;
+            if (index == 0) {
+                frequency = value;
+                if (world != null) WirelessRedstone.sendTickScheduleToReceivers(world);
+            }
         }
 
         @Override

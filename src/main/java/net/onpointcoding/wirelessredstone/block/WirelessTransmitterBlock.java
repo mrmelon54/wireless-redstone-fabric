@@ -50,10 +50,6 @@ public class WirelessTransmitterBlock extends WirelessFrequencyBlock {
     }
 
     void updateWirelessFrequency(World world, BlockPos pos, boolean isPowered, long freq) {
-        System.out.println("updateWirelessFrequency");
-        System.out.println(pos);
-        System.out.println(isPowered);
-        System.out.println(freq);
         Set<TransmittingFrequencyEntry> transmitting = MyComponents.FrequencyStorage.get(world).getTransmitting();
         if (isPowered)
             transmitting.add(new TransmittingFrequencyEntry(pos.toImmutable(), freq));

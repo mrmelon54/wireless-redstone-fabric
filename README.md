@@ -6,6 +6,8 @@ Requires the [Fabric Loader](https://fabricmc.net/use/), [Fabric API](https://ww
 
 Please upgrade for v2.0.1 (for Minecraft 1.18+) and use cardinal components API v4.1.0 from [modrinth.com/mod/cardinal-components-api](https://modrinth.com/mod/cardinal-components-api)
 
+For v2.0.2 onwards Cardinal Components is embedded and doesn't need to be downloaded separately
+
 ## Setup
 
 - Drop the mod in the mods folder

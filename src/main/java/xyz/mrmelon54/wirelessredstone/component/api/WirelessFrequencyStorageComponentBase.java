@@ -1,8 +1,8 @@
-package net.onpointcoding.wirelessredstone.component.api;
+package xyz.mrmelon54.wirelessredstone.component.api;
 
 import dev.onyxstudios.cca.api.v3.component.ComponentV3;
 import net.minecraft.util.math.BlockPos;
-import net.onpointcoding.wirelessredstone.util.TransmittingFrequencyEntry;
+import xyz.mrmelon54.wirelessredstone.util.TransmittingFrequencyEntry;
 
 import java.util.Set;
 

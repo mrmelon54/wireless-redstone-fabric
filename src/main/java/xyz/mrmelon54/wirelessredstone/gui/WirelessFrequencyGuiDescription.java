@@ -1,4 +1,4 @@
-package net.onpointcoding.wirelessredstone.gui;
+package xyz.mrmelon54.wirelessredstone.gui;
 
 import io.github.cottonmc.cotton.gui.SyncedGuiDescription;
 import io.github.cottonmc.cotton.gui.widget.WButton;
@@ -7,27 +7,29 @@ import io.github.cottonmc.cotton.gui.widget.WTextField;
 import io.github.cottonmc.cotton.gui.widget.data.Insets;
 import io.netty.buffer.Unpooled;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.text.TranslatableText;
-import net.onpointcoding.wirelessredstone.WirelessRedstone;
-import net.onpointcoding.wirelessredstone.packet.WirelessFrequencyChangeC2SPacket;
-import net.onpointcoding.wirelessredstone.util.NetworkingConstants;
+import xyz.mrmelon54.wirelessredstone.WirelessRedstone;
+import xyz.mrmelon54.wirelessredstone.packet.WirelessFrequencyChangeC2SPacket;
+import xyz.mrmelon54.wirelessredstone.screen.WirelessFrequencyErrorScreen;
+import xyz.mrmelon54.wirelessredstone.util.NetworkingConstants;
 
 import java.util.regex.Pattern;
 
 public class WirelessFrequencyGuiDescription extends SyncedGuiDescription {
     final Pattern numericCheckerPattern = Pattern.compile("^-?[0-9]+$");
     static final int PROPERTY_COUNT = 1;
+    public Screen parent;
     private int wirelessFrequencyInput;
     private final WTextField wirelessFrequencyBox;
 
     public WirelessFrequencyGuiDescription(int syncId, PlayerInventory playerInventory, ScreenHandlerContext context) {
         super(WirelessRedstone.WIRELESS_FREQUENCY_SCREEN, syncId, playerInventory, getBlockInventory(context, 0), getBlockPropertyDelegate(context, PROPERTY_COUNT));
-
-        System.out.println("Loading gui screen");
 
         WPlainPanel root = new WPlainPanel();
         setRootPanel(root);
@@ -41,7 +43,11 @@ public class WirelessFrequencyGuiDescription extends SyncedGuiDescription {
         wTextField.setTextPredicate(s -> numericCheckerPattern.matcher(s).find());
         wTextField.setChangedListener(s -> {
             if (numericCheckerPattern.matcher(s).find())
-                wirelessFrequencyInput = Integer.parseInt(s);
+                try {
+                    wirelessFrequencyInput = Integer.parseInt(s);
+                } catch (NumberFormatException ignored) {
+                    MinecraftClient.getInstance().setScreen(new WirelessFrequencyErrorScreen(parent));
+                }
         });
         root.add(wTextField, 0, 15, 160, 20);
 

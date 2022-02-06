@@ -1,12 +1,10 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "net.onpointcoding.wirelessredstone.mixin",
+  "package": "xyz.mrmelon54.wirelessredstone.mixin",
   "compatibilityLevel": "JAVA_16",
-  "mixins": [
-  ],
-  "client": [
-  ],
+  "mixins": [],
+  "client": [],
   "injectors": {
     "defaultRequire": 1
   }

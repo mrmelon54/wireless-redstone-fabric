@@ -1,4 +1,4 @@
-package net.onpointcoding.wirelessredstone.util;
+package xyz.mrmelon54.wirelessredstone.util;
 
 import net.minecraft.util.math.BlockPos;
 

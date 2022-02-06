@@ -1,4 +1,4 @@
-package net.onpointcoding.wirelessredstone.block;
+package xyz.mrmelon54.wirelessredstone.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -6,10 +6,10 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.onpointcoding.wirelessredstone.MyComponents;
-import net.onpointcoding.wirelessredstone.WirelessRedstone;
-import net.onpointcoding.wirelessredstone.block.entity.WirelessTransmitterBlockEntity;
-import net.onpointcoding.wirelessredstone.util.TransmittingFrequencyEntry;
+import xyz.mrmelon54.wirelessredstone.MyComponents;
+import xyz.mrmelon54.wirelessredstone.WirelessRedstone;
+import xyz.mrmelon54.wirelessredstone.block.entity.WirelessTransmitterBlockEntity;
+import xyz.mrmelon54.wirelessredstone.util.TransmittingFrequencyEntry;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Set;

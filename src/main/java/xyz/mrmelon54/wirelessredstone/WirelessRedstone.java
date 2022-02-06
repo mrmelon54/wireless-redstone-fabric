@@ -1,4 +1,4 @@
-package net.onpointcoding.wirelessredstone;
+package xyz.mrmelon54.wirelessredstone;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -20,12 +20,12 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.tick.OrderedTick;
 import net.minecraft.world.tick.TickScheduler;
-import net.onpointcoding.wirelessredstone.block.WirelessReceiverBlock;
-import net.onpointcoding.wirelessredstone.block.WirelessTransmitterBlock;
-import net.onpointcoding.wirelessredstone.block.entity.WirelessReceiverBlockEntity;
-import net.onpointcoding.wirelessredstone.block.entity.WirelessTransmitterBlockEntity;
-import net.onpointcoding.wirelessredstone.gui.WirelessFrequencyGuiDescription;
-import net.onpointcoding.wirelessredstone.util.NetworkingConstants;
+import xyz.mrmelon54.wirelessredstone.block.WirelessReceiverBlock;
+import xyz.mrmelon54.wirelessredstone.block.WirelessTransmitterBlock;
+import xyz.mrmelon54.wirelessredstone.block.entity.WirelessReceiverBlockEntity;
+import xyz.mrmelon54.wirelessredstone.block.entity.WirelessTransmitterBlockEntity;
+import xyz.mrmelon54.wirelessredstone.gui.WirelessFrequencyGuiDescription;
+import xyz.mrmelon54.wirelessredstone.util.NetworkingConstants;
 
 public class WirelessRedstone implements ModInitializer {
     public static final Block WIRELESS_TRANSMITTER = new WirelessTransmitterBlock(FabricBlockSettings.of(Material.METAL).collidable(true).breakByHand(true).strength(0).luminance(value -> value.get(Properties.LIT) ? 7 : 0));

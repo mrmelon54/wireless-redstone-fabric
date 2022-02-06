@@ -1,12 +1,12 @@
-package net.onpointcoding.wirelessredstone.component;
+package xyz.mrmelon54.wirelessredstone.component;
 
 import net.fabricmc.fabric.api.util.NbtType;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtList;
 import net.minecraft.util.math.BlockPos;
-import net.onpointcoding.wirelessredstone.component.api.WirelessFrequencyStorageComponentBase;
-import net.onpointcoding.wirelessredstone.util.TransmittingFrequencyEntry;
+import xyz.mrmelon54.wirelessredstone.component.api.WirelessFrequencyStorageComponentBase;
+import xyz.mrmelon54.wirelessredstone.util.TransmittingFrequencyEntry;
 
 import java.util.HashSet;
 import java.util.Set;

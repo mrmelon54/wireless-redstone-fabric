@@ -1,4 +1,4 @@
-package net.onpointcoding.wirelessredstone.block;
+package xyz.mrmelon54.wirelessredstone.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
@@ -11,7 +11,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.onpointcoding.wirelessredstone.block.entity.WirelessFrequencyBlockEntity;
+import xyz.mrmelon54.wirelessredstone.block.entity.WirelessFrequencyBlockEntity;
 
 public abstract class WirelessFrequencyBlock extends Block implements BlockEntityProvider {
     public WirelessFrequencyBlock(Settings settings) {

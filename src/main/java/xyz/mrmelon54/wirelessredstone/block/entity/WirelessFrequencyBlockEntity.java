@@ -1,4 +1,4 @@
-package net.onpointcoding.wirelessredstone.block.entity;
+package xyz.mrmelon54.wirelessredstone.block.entity;
 
 import io.github.cottonmc.cotton.gui.PropertyDelegateHolder;
 import net.fabricmc.fabric.api.util.NbtType;
@@ -15,8 +15,8 @@ import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 import net.minecraft.util.math.BlockPos;
-import net.onpointcoding.wirelessredstone.WirelessRedstone;
-import net.onpointcoding.wirelessredstone.gui.WirelessFrequencyGuiDescription;
+import xyz.mrmelon54.wirelessredstone.WirelessRedstone;
+import xyz.mrmelon54.wirelessredstone.gui.WirelessFrequencyGuiDescription;
 import org.jetbrains.annotations.Nullable;
 
 public class WirelessFrequencyBlockEntity<T extends WirelessFrequencyBlockEntity<T>> extends BlockEntity implements PropertyDelegateHolder, NamedScreenHandlerFactory {

@@ -1,4 +1,4 @@
-package net.onpointcoding.wirelessredstone.packet;
+package xyz.mrmelon54.wirelessredstone.packet;
 
 import net.minecraft.network.Packet;
 import net.minecraft.network.PacketByteBuf;

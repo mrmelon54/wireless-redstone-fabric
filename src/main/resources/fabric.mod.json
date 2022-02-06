@@ -8,7 +8,7 @@
     "MrMelon54"
   ],
   "contact": {
-    "homepage": "https://minecraft.onpointcoding.net/mods/wirelessredstone",
+    "homepage": "https://minecraft.mrmelon54.xyz/mods/wirelessredstone",
     "sources": "https://github.com/MrMelon54/wireless-redstone-fabric"
   },
   "license": "MIT",
@@ -16,13 +16,13 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "net.onpointcoding.wirelessredstone.client.WirelessRedstoneClient"
+      "xyz.mrmelon54.wirelessredstone.client.WirelessRedstoneClient"
     ],
     "main": [
-      "net.onpointcoding.wirelessredstone.WirelessRedstone"
+      "xyz.mrmelon54.wirelessredstone.WirelessRedstone"
     ],
     "cardinal-components-world": [
-      "net.onpointcoding.wirelessredstone.MyComponents"
+      "xyz.mrmelon54.wirelessredstone.MyComponents"
     ]
   },
   "mixins": [

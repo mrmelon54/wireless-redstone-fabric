@@ -8,6 +8,5 @@ import xyz.mrmelon54.wirelessredstone.gui.WirelessFrequencyGuiDescription;
 public class WirelessFrequencyScreen extends CottonInventoryScreen<WirelessFrequencyGuiDescription> {
     public WirelessFrequencyScreen(WirelessFrequencyGuiDescription description, PlayerEntity player, Text title) {
         super(description, player, title);
-        description.parent = this;
     }
 }

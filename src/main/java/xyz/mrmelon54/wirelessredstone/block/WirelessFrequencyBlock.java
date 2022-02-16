@@ -3,6 +3,7 @@ package xyz.mrmelon54.wirelessredstone.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockEntityProvider;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.BlockWithEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
@@ -11,9 +12,8 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import xyz.mrmelon54.wirelessredstone.block.entity.WirelessFrequencyBlockEntity;
 
-public abstract class WirelessFrequencyBlock extends Block implements BlockEntityProvider {
+public abstract class WirelessFrequencyBlock extends BlockWithEntity {
     public WirelessFrequencyBlock(Settings settings) {
         super(settings);
         setDefaultState(getStateManager().getDefaultState().with(Properties.LIT, false));
@@ -21,8 +21,7 @@ public abstract class WirelessFrequencyBlock extends Block implements BlockEntit
 
     @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
-        if (world.getBlockEntity(pos) instanceof WirelessFrequencyBlockEntity<?> wirelessFrequencyBlockEntity)
-            player.openHandledScreen(wirelessFrequencyBlockEntity);
+        player.openHandledScreen(state.createScreenHandlerFactory(world,pos));
         return ActionResult.SUCCESS;
     }
 

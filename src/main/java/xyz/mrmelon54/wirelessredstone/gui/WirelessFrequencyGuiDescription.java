@@ -8,7 +8,6 @@ import io.github.cottonmc.cotton.gui.widget.data.Insets;
 import io.netty.buffer.Unpooled;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.network.PacketByteBuf;
@@ -24,7 +23,6 @@ import java.util.regex.Pattern;
 public class WirelessFrequencyGuiDescription extends SyncedGuiDescription {
     final Pattern numericCheckerPattern = Pattern.compile("^-?[0-9]+$");
     static final int PROPERTY_COUNT = 1;
-    public Screen parent;
     private int wirelessFrequencyInput;
     private final WTextField wirelessFrequencyBox;
 
@@ -42,11 +40,11 @@ public class WirelessFrequencyGuiDescription extends SyncedGuiDescription {
         wTextField.setText("");
         wTextField.setTextPredicate(s -> numericCheckerPattern.matcher(s).find());
         wTextField.setChangedListener(s -> {
-            if (numericCheckerPattern.matcher(s).find())
+            if (playerInventory.player.world.isClient() && numericCheckerPattern.matcher(s).find())
                 try {
                     wirelessFrequencyInput = Integer.parseInt(s);
                 } catch (NumberFormatException ignored) {
-                    MinecraftClient.getInstance().setScreen(new WirelessFrequencyErrorScreen(parent));
+                    MinecraftClient.getInstance().setScreen(new WirelessFrequencyErrorScreen(null));
                 }
         });
         root.add(wTextField, 0, 15, 160, 20);
@@ -54,7 +52,7 @@ public class WirelessFrequencyGuiDescription extends SyncedGuiDescription {
         WButton wButton = new WButton();
         wButton.setLabel(new TranslatableText("screen.wireless_redstone.set_frequency"));
         wButton.setOnClick(() -> {
-            if (playerInventory.player.world.isClient) {
+            if (playerInventory.player.world.isClient()) {
                 System.out.println("Sending wirelessFrequencyInput to server: " + wirelessFrequencyInput);
                 WirelessFrequencyChangeC2SPacket wirelessFrequencyChangeC2SPacket = new WirelessFrequencyChangeC2SPacket(wirelessFrequencyInput);
                 PacketByteBuf byteBuf = new PacketByteBuf(Unpooled.buffer());

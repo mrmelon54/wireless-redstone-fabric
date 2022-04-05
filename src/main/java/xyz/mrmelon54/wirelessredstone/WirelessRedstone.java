@@ -28,8 +28,8 @@ import xyz.mrmelon54.wirelessredstone.gui.WirelessFrequencyGuiDescription;
 import xyz.mrmelon54.wirelessredstone.util.NetworkingConstants;
 
 public class WirelessRedstone implements ModInitializer {
-    public static final Block WIRELESS_TRANSMITTER = new WirelessTransmitterBlock(FabricBlockSettings.of(Material.METAL).collidable(true).breakByHand(true).strength(0).luminance(value -> value.get(Properties.LIT) ? 7 : 0));
-    public static final Block WIRELESS_RECEIVER = new WirelessReceiverBlock(FabricBlockSettings.of(Material.METAL).collidable(true).breakByHand(true).luminance(value -> value.get(Properties.LIT) ? 7 : 0));
+    public static final Block WIRELESS_TRANSMITTER = new WirelessTransmitterBlock(FabricBlockSettings.of(Material.METAL).collidable(true).strength(0).luminance(value -> value.get(Properties.LIT) ? 7 : 0));
+    public static final Block WIRELESS_RECEIVER = new WirelessReceiverBlock(FabricBlockSettings.of(Material.METAL).collidable(true).luminance(value -> value.get(Properties.LIT) ? 7 : 0));
     public static BlockEntityType<WirelessTransmitterBlockEntity> WIRELESS_TRANSMITTER_BLOCK_ENTITY;
     public static BlockEntityType<WirelessReceiverBlockEntity> WIRELESS_RECEIVER_BLOCK_ENTITY;
     public static ScreenHandlerType<WirelessFrequencyGuiDescription> WIRELESS_FREQUENCY_SCREEN;

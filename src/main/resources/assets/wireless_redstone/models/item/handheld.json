@@ -1,0 +1,20 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "wireless_redstone:item/handheld_off"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "wireless_redstone_handheld_enabled": 0
+      },
+      "model": "wireless_redstone:item/handheld"
+    },
+    {
+      "predicate": {
+        "wireless_redstone_handheld_enabled": 0.01
+      },
+      "model": "wireless_redstone:item/handheld_on"
+    }
+  ]
+}

@@ -7,13 +7,16 @@ import net.minecraft.nbt.NbtList;
 import net.minecraft.util.math.BlockPos;
 import xyz.mrmelon54.wirelessredstone.component.api.WirelessFrequencyStorageComponentBase;
 import xyz.mrmelon54.wirelessredstone.util.TransmittingFrequencyEntry;
+import xyz.mrmelon54.wirelessredstone.util.TransmittingHandheldEntry;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 public class WirelessFrequencyStorageComponent implements WirelessFrequencyStorageComponentBase {
     private final Set<BlockPos> wirelessReceivers = new HashSet<>();
     private final Set<TransmittingFrequencyEntry> wirelessTransmitting = new HashSet<>();
+    private final Set<TransmittingHandheldEntry> wirelessHandheld = new HashSet<>();
 
     @Override
     public Set<BlockPos> getReceivers() {
@@ -26,9 +29,15 @@ public class WirelessFrequencyStorageComponent implements WirelessFrequencyStora
     }
 
     @Override
+    public Set<TransmittingHandheldEntry> getHandheld() {
+        return wirelessHandheld;
+    }
+
+    @Override
     public void readFromNbt(NbtCompound tag) {
         wirelessReceivers.clear();
         wirelessTransmitting.clear();
+        wirelessHandheld.clear();
 
         NbtList receivers = tag.getList("wireless_receivers", NbtType.COMPOUND);
         for (NbtElement item : receivers)
@@ -45,8 +54,16 @@ public class WirelessFrequencyStorageComponent implements WirelessFrequencyStora
                 int x = compound.getInt("x");
                 int y = compound.getInt("y");
                 int z = compound.getInt("z");
-                long freq = compound.getInt("freq");
+                long freq = compound.getLong("freq");
                 wirelessTransmitting.add(new TransmittingFrequencyEntry(new BlockPos(x, y, z), freq));
+            }
+
+        NbtList handheld = tag.getList("wireless_handheld", NbtType.COMPOUND);
+        for (NbtElement item : handheld)
+            if (item instanceof NbtCompound compound) {
+                UUID player = compound.getUuid("player");
+                long freq = compound.getLong("freq");
+                wirelessHandheld.add(new TransmittingHandheldEntry(player, freq));
             }
     }
 
@@ -72,5 +89,14 @@ public class WirelessFrequencyStorageComponent implements WirelessFrequencyStora
             transmitting.add(compound);
         }
         tag.put("wireless_transmitting", transmitting);
+
+        NbtList handheld = new NbtList();
+        for (TransmittingHandheldEntry entry : wirelessHandheld) {
+            NbtCompound compound = new NbtCompound();
+            compound.putUuid("player", entry.handheldUuid());
+            compound.putLong("freq", entry.freq());
+            handheld.add(compound);
+        }
+        tag.put("wireless_handheld", handheld);
     }
 }

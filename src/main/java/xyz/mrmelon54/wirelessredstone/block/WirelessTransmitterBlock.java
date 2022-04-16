@@ -54,7 +54,7 @@ public class WirelessTransmitterBlock extends WirelessFrequencyBlock {
         if (isPowered)
             transmitting.add(new TransmittingFrequencyEntry(pos.toImmutable(), freq));
         else
-            transmitting.removeIf(transmittingFrequencyEntry -> transmittingFrequencyEntry.pos().hashCode() == pos.hashCode());
+            transmitting.removeIf(transmittingFrequencyEntry -> transmittingFrequencyEntry.pos().equals(pos));
 
         WirelessRedstone.sendTickScheduleToReceivers(world);
     }

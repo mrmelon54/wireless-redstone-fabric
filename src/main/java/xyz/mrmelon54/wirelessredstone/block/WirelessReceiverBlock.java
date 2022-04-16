@@ -32,11 +32,11 @@ public class WirelessReceiverBlock extends WirelessFrequencyBlock {
                     world.setBlockState(pos, state.with(Properties.LIT, shouldBeLit), Block.NOTIFY_ALL);
             } else world.setBlockState(pos, state.with(Properties.LIT, false), Block.NOTIFY_ALL);
         }
-
     }
 
     boolean hasLitTransmitterOnFrequency(World world, long freq) {
-        return MyComponents.FrequencyStorage.get(world).getTransmitting().stream().anyMatch(transmittingFrequencyEntry -> transmittingFrequencyEntry.freq() == freq);
+        return MyComponents.FrequencyStorage.get(world).getTransmitting().stream().anyMatch(transmittingFrequencyEntry -> transmittingFrequencyEntry.freq() == freq)
+                || MyComponents.FrequencyStorage.get(world).getHandheld().stream().anyMatch(transmittingHandheldEntry -> transmittingHandheldEntry.freq() == freq);
     }
 
     @Deprecated

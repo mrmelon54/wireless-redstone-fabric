@@ -32,8 +32,8 @@
   "depends": {
     "fabricloader": ">=0.14.0",
     "fabric": "*",
-    "minecraft": "1.18.x",
-    "libgui": ">=5.0.0"
+    "minecraft": "1.19.x",
+    "libgui": ">=5.9.9"
   },
   "custom": {
     "cardinal-components": [

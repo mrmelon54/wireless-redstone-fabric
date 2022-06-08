@@ -5,7 +5,7 @@ import io.github.cottonmc.cotton.gui.widget.WLabel;
 import io.github.cottonmc.cotton.gui.widget.WPlainPanel;
 import io.github.cottonmc.cotton.gui.widget.data.Insets;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 
 public class WirelessFrequencyErrorGuiDescription extends io.github.cottonmc.cotton.gui.client.LightweightGuiDescription {
     public WirelessFrequencyErrorGuiDescription() {
@@ -14,11 +14,11 @@ public class WirelessFrequencyErrorGuiDescription extends io.github.cottonmc.cot
         root.setSize(160, 55);
         root.setInsets(Insets.ROOT_PANEL);
 
-        WLabel wLabel = new WLabel(new TranslatableText("screen.wireless-redstone.error_message"));
+        WLabel wLabel = new WLabel(Text.translatable("screen.wireless-redstone.error_message"));
         root.add(wLabel, 0, 18);
 
         WButton wButton = new WButton();
-        wButton.setLabel(new TranslatableText("screen.wireless-redstone.ok"));
+        wButton.setLabel(Text.translatable("screen.wireless-redstone.ok"));
         wButton.setOnClick(() -> {
             MinecraftClient.getInstance().setScreen(null);
         });

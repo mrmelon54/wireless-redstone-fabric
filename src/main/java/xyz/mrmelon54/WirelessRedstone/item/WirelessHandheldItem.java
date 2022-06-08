@@ -11,8 +11,8 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.text.TranslatableText;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -65,7 +65,7 @@ public class WirelessHandheldItem extends Item implements NamedScreenHandlerFact
 
     @Override
     public Text getDisplayName() {
-        return new TranslatableText(getTranslationKey());
+        return Text.translatable(getTranslationKey());
     }
 
     @Override
@@ -74,9 +74,9 @@ public class WirelessHandheldItem extends Item implements NamedScreenHandlerFact
 
         NbtCompound compound = getOrCreateNbt(stack);
         if (compound != null) {
-            boolean enabled = !compound.getBoolean(WIRELESS_HANDHELD_ENABLED);
+            boolean enabled = compound.getBoolean(WIRELESS_HANDHELD_ENABLED);
             int freq = compound.getInt(WIRELESS_HANDHELD_FREQ);
-            TranslatableText freqTooltip = new TranslatableText("item.wireless-redstone.item.tooltip-frequency", freq);
+            MutableText freqTooltip = Text.translatable("item.wireless-redstone.item.tooltip-frequency", freq);
             tooltip.add(enabled ? freqTooltip.formatted(Formatting.GREEN) : freqTooltip.formatted(Formatting.RED));
         }
     }

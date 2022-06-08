@@ -15,7 +15,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.screen.PropertyDelegate;
 import net.minecraft.screen.ScreenHandlerContext;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.text.Text;
 import xyz.mrmelon54.WirelessRedstone.MyComponents;
 import xyz.mrmelon54.WirelessRedstone.WirelessRedstone;
 import xyz.mrmelon54.WirelessRedstone.client.WirelessRedstoneClient;
@@ -99,7 +99,7 @@ public class WirelessFrequencyGuiDescription extends SyncedGuiDescription {
         }
 
         WButton wButton = new WButton();
-        wButton.setLabel(new TranslatableText("screen.wireless-redstone.set_frequency"));
+        wButton.setLabel(Text.translatable("screen.wireless-redstone.set_frequency"));
         wButton.setOnClick(() -> {
             String s = wTextField.getText();
             if (playerInventory.player.world.isClient() && numericCheckerPattern.matcher(s).find()) {

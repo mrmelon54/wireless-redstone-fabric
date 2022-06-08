@@ -74,7 +74,7 @@ public class WirelessHandheldItem extends Item implements NamedScreenHandlerFact
 
         NbtCompound compound = getOrCreateNbt(stack);
         if (compound != null) {
-            boolean enabled = !compound.getBoolean(WIRELESS_HANDHELD_ENABLED);
+            boolean enabled = compound.getBoolean(WIRELESS_HANDHELD_ENABLED);
             int freq = compound.getInt(WIRELESS_HANDHELD_FREQ);
             TranslatableText freqTooltip = new TranslatableText("item.wireless-redstone.item.tooltip-frequency", freq);
             tooltip.add(enabled ? freqTooltip.formatted(Formatting.GREEN) : freqTooltip.formatted(Formatting.RED));

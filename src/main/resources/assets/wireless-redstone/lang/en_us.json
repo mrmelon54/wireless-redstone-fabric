@@ -1,0 +1,10 @@
+{
+  "block.wireless-redstone.transmitter": "Wireless Redstone Transmitter",
+  "block.wireless-redstone.receiver": "Wireless Redstone Receiver",
+  "item.wireless-redstone.handheld": "Wireless Redstone Handheld",
+  "item.wireless-redstone.item.tooltip-frequency": "Frequency: %d",
+  "screen.wireless-redstone.set_frequency": "Set frequency",
+  "screen.wireless-redstone.error": "Error",
+  "screen.wireless-redstone.ok": "OK",
+  "screen.wireless-redstone.error_message": "Invalid integer"
+}

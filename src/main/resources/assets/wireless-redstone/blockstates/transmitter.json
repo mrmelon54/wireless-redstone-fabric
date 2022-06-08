@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "wireless-redstone:block/transmitter_off"
+    },
+    "lit=true": {
+      "model": "wireless-redstone:block/transmitter_on"
+    }
+  }
+}

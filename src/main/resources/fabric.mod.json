@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "wireless_redstone",
+  "id": "wireless-redstone",
   "version": "${version}",
   "name": "Wireless Redstone",
   "description": "Adds wireless redstone transmitter and receiver",
@@ -8,35 +8,36 @@
     "MrMelon54"
   ],
   "contact": {
-    "homepage": "https://minecraft.mrmelon54.xyz/mods/wirelessredstone",
-    "sources": "https://github.com/MrMelon54/wireless-redstone-fabric"
+    "homepage": "https://minecraft.mrmelon54.xyz/mods/wireless-redstone",
+    "sources": "https://github.com/MrMelon54/wireless-redstone-fabric",
+    "issues": "https://github.com/MrMelon54/wireless-redstone-fabric/issues"
   },
   "license": "MIT",
-  "icon": "assets/wireless_redstone/icon.png",
+  "icon": "assets/wireless-redstone/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [
-      "xyz.mrmelon54.wirelessredstone.client.WirelessRedstoneClient"
+      "xyz.mrmelon54.WirelessRedstone.client.WirelessRedstoneClient"
     ],
     "main": [
-      "xyz.mrmelon54.wirelessredstone.WirelessRedstone"
+      "xyz.mrmelon54.WirelessRedstone.WirelessRedstone"
     ],
     "cardinal-components-world": [
-      "xyz.mrmelon54.wirelessredstone.MyComponents"
+      "xyz.mrmelon54.WirelessRedstone.MyComponents"
     ]
   },
   "mixins": [
-    "wireless_redstone.mixins.json"
+    "WirelessRedstone.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.12.8",
+    "fabricloader": ">=0.14.0",
     "fabric": "*",
     "minecraft": "1.18.x",
     "libgui": ">=5.0.0"
   },
   "custom": {
     "cardinal-components": [
-      "wireless_redstone:wireless_frequency_storage"
+      "wireless-redstone:wireless_frequency_storage"
     ]
   }
 }

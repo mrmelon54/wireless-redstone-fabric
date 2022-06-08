@@ -18,6 +18,16 @@ My version of a simple wireless redstone transmitter and receiver.
 
 The crafting recipes are in the images tab/folder.
 
+## Usage
+
+Right click on transmitter or receiver blocks to change the frequency and allow multiple wireless connections at the same time.
+
+## Handheld
+
+From v2.1.0 there is a handheld device that players can use to trigger receivers on the same frequency.
+
+If the handheld
+
 ## Discord
 
 - https://discord.gg/usbmdrJ

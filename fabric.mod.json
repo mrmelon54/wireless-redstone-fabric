@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "id": "wireless-redstone",
+  "version": "3.0.1",
+  "name": "Wireless Redstone",
+  "description": "Adds wireless redstone transmitter and receiver",
+  "authors": [
+    "MrMelon54"
+  ],
+  "contact": {
+    "homepage": "https://minecraft.mrmelon54.xyz/mods/wireless-redstone",
+    "sources": "https://github.com/MrMelon54/wireless-redstone-fabric",
+    "issues": "https://github.com/MrMelon54/wireless-redstone-fabric/issues"
+  },
+  "license": "MIT",
+  "icon": "assets/wireless-redstone/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "xyz.mrmelon54.WirelessRedstone.client.WirelessRedstoneClient"
+    ],
+    "main": [
+      "xyz.mrmelon54.WirelessRedstone.WirelessRedstone"
+    ],
+    "cardinal-components-world": [
+      "xyz.mrmelon54.WirelessRedstone.MyComponents"
+    ]
+  },
+  "mixins": [
+    "WirelessRedstone.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.0",
+    "fabric": "*",
+    "minecraft": "1.19.x",
+    "libgui": ">=5.9.9"
+  },
+  "custom": {
+    "cardinal-components": [
+      "wireless-redstone:wireless_frequency_storage"
+    ]
+  }
+}

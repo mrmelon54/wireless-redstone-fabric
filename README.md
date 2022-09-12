@@ -24,7 +24,7 @@ Right click on transmitter or receiver blocks to change the frequency and allow 
 
 ## Handheld
 
-From v2.1.0 there is a handheld device that players can use to trigger receivers on the same frequency.
+From v3.0.0 there is a handheld device that players can use to trigger receivers on the same frequency.
 
 If the handheld
 

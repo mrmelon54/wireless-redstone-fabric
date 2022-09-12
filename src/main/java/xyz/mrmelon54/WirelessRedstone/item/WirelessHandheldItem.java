@@ -6,8 +6,7 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.screen.NamedScreenHandlerFactory;
@@ -40,6 +39,11 @@ public class WirelessHandheldItem extends Item implements NamedScreenHandlerFact
     }
 
     @Override
+    public UseAction getUseAction(ItemStack stack) {
+        return UseAction.EAT;
+    }
+
+    @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
         if (user.isSneaking()) {
@@ -58,16 +62,21 @@ public class WirelessHandheldItem extends Item implements NamedScreenHandlerFact
         handheld.add(new TransmittingHandheldEntry(uuid, freq));
 
         WirelessRedstone.sendTickScheduleToReceivers(world);
-        return TypedActionResult.pass(itemStack);
+        return TypedActionResult.consume(itemStack);
     }
 
     @Override
-    public UseAction getUseAction(ItemStack stack) {
-        return super.getUseAction(stack);
+    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+        endUse(stack, world);
+        return stack;
     }
 
     @Override
     public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
+        endUse(stack, world);
+    }
+
+    private void endUse(ItemStack stack, World world) {
         NbtCompound compound = getOrCreateNbt(stack);
         if (compound == null) return;
 
@@ -78,6 +87,10 @@ public class WirelessHandheldItem extends Item implements NamedScreenHandlerFact
         handheld.removeIf(transmittingFrequencyEntry -> transmittingFrequencyEntry.handheldUuid().equals(uuid));
 
         WirelessRedstone.sendTickScheduleToReceivers(world);
+    }
+
+    public boolean isUsedOnRelease(ItemStack stack) {
+        return stack.isOf(this);
     }
 
     @Override

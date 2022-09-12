@@ -3,6 +3,7 @@ package xyz.mrmelon54.WirelessRedstone.item;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.ItemEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.Item;
@@ -16,6 +17,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import xyz.mrmelon54.WirelessRedstone.MyComponents;
@@ -49,18 +51,33 @@ public class WirelessHandheldItem extends Item implements NamedScreenHandlerFact
         if (compound == null) return TypedActionResult.fail(itemStack);
 
         UUID uuid = compound.getUuid(WIRELESS_HANDHELD_UUID);
-        boolean enabled = !compound.getBoolean(WIRELESS_HANDHELD_ENABLED);
-        compound.putBoolean(WIRELESS_HANDHELD_ENABLED, enabled);
+        compound.putBoolean(WIRELESS_HANDHELD_ENABLED, true);
         int freq = compound.getInt(WIRELESS_HANDHELD_FREQ);
 
         Set<TransmittingHandheldEntry> handheld = MyComponents.FrequencyStorage.get(world).getHandheld();
-        if (enabled)
-            handheld.add(new TransmittingHandheldEntry(uuid, freq));
-        else
-            handheld.removeIf(transmittingFrequencyEntry -> transmittingFrequencyEntry.handheldUuid().equals(uuid));
+        handheld.add(new TransmittingHandheldEntry(uuid, freq));
 
         WirelessRedstone.sendTickScheduleToReceivers(world);
         return TypedActionResult.pass(itemStack);
+    }
+
+    @Override
+    public UseAction getUseAction(ItemStack stack) {
+        return super.getUseAction(stack);
+    }
+
+    @Override
+    public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
+        NbtCompound compound = getOrCreateNbt(stack);
+        if (compound == null) return;
+
+        UUID uuid = compound.getUuid(WIRELESS_HANDHELD_UUID);
+        compound.putBoolean(WIRELESS_HANDHELD_ENABLED, false);
+
+        Set<TransmittingHandheldEntry> handheld = MyComponents.FrequencyStorage.get(world).getHandheld();
+        handheld.removeIf(transmittingFrequencyEntry -> transmittingFrequencyEntry.handheldUuid().equals(uuid));
+
+        WirelessRedstone.sendTickScheduleToReceivers(world);
     }
 
     @Override

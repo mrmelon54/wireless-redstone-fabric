@@ -54,12 +54,14 @@ public class WirelessHandheldItem extends Item implements NamedScreenHandlerFact
         NbtCompound compound = getOrCreateNbt(itemStack);
         if (compound == null) return TypedActionResult.fail(itemStack);
 
+        boolean v = compound.getBoolean(WIRELESS_HANDHELD_ENABLED);
         UUID uuid = compound.getUuid(WIRELESS_HANDHELD_UUID);
-        compound.putBoolean(WIRELESS_HANDHELD_ENABLED, true);
+        compound.putBoolean(WIRELESS_HANDHELD_ENABLED, !v);
         int freq = compound.getInt(WIRELESS_HANDHELD_FREQ);
 
         Set<TransmittingHandheldEntry> handheld = MyComponents.FrequencyStorage.get(world).getHandheld();
-        handheld.add(new TransmittingHandheldEntry(uuid, freq));
+        if (v) handheld.add(new TransmittingHandheldEntry(uuid, freq));
+        else handheld.removeIf(transmittingFrequencyEntry -> transmittingFrequencyEntry.handheldUuid().equals(uuid));
 
         WirelessRedstone.sendTickScheduleToReceivers(world);
         return TypedActionResult.consume(itemStack);
@@ -71,11 +73,6 @@ public class WirelessHandheldItem extends Item implements NamedScreenHandlerFact
         return stack;
     }
 
-    @Override
-    public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
-        endUse(stack, world);
-    }
-
     private void endUse(ItemStack stack, World world) {
         NbtCompound compound = getOrCreateNbt(stack);
         if (compound == null) return;
@@ -83,8 +80,6 @@ public class WirelessHandheldItem extends Item implements NamedScreenHandlerFact
         UUID uuid = compound.getUuid(WIRELESS_HANDHELD_UUID);
         compound.putBoolean(WIRELESS_HANDHELD_ENABLED, false);
 
-        Set<TransmittingHandheldEntry> handheld = MyComponents.FrequencyStorage.get(world).getHandheld();
-        handheld.removeIf(transmittingFrequencyEntry -> transmittingFrequencyEntry.handheldUuid().equals(uuid));
 
         WirelessRedstone.sendTickScheduleToReceivers(world);
     }

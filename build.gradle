@@ -17,6 +17,10 @@ repositories {
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html
     // for more information about repositories.
     maven {
+        name = 'ajoberstar-backup'
+        url = 'https://ajoberstar.org/bintray-backup/'
+    }
+    maven {
         name = 'CottonMC'
         url = 'https://server.bbkr.space/artifactory/libs-release'
     }

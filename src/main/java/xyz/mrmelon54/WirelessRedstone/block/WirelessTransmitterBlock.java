@@ -59,6 +59,11 @@ public class WirelessTransmitterBlock extends WirelessFrequencyBlock {
         WirelessRedstone.sendTickScheduleToReceivers(world);
     }
 
+    @Override
+    public boolean emitsRedstonePower(BlockState state) {
+        return true;
+    }
+
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {

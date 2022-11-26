@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "wireless-redstone",
   "version": "${version}",
-  "name": "Wireless Redstone",
+  "name": "Melon Wireless Redstone",
   "description": "Adds wireless redstone transmitter and receiver",
   "authors": [
     "MrMelon54"

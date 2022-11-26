@@ -54,38 +54,20 @@ public class WirelessHandheldItem extends Item implements NamedScreenHandlerFact
         NbtCompound compound = getOrCreateNbt(itemStack);
         if (compound == null) return TypedActionResult.fail(itemStack);
 
-        boolean v = compound.getBoolean(WIRELESS_HANDHELD_ENABLED);
+        boolean v = !compound.getBoolean(WIRELESS_HANDHELD_ENABLED);
         UUID uuid = compound.getUuid(WIRELESS_HANDHELD_UUID);
-        compound.putBoolean(WIRELESS_HANDHELD_ENABLED, !v);
+        compound.putBoolean(WIRELESS_HANDHELD_ENABLED, v);
         int freq = compound.getInt(WIRELESS_HANDHELD_FREQ);
 
         Set<TransmittingHandheldEntry> handheld = MyComponents.FrequencyStorage.get(world).getHandheld();
-        if (v) handheld.add(new TransmittingHandheldEntry(uuid, freq));
-        else handheld.removeIf(transmittingFrequencyEntry -> transmittingFrequencyEntry.handheldUuid().equals(uuid));
+        if (v) {
+            UUID uuid1 = UUID.randomUUID();
+            compound.putUuid(WIRELESS_HANDHELD_UUID, uuid1);
+            handheld.add(new TransmittingHandheldEntry(uuid1, freq));
+        } else handheld.removeIf(transmittingFrequencyEntry -> transmittingFrequencyEntry.handheldUuid().equals(uuid));
 
         WirelessRedstone.sendTickScheduleToReceivers(world);
         return TypedActionResult.consume(itemStack);
-    }
-
-    @Override
-    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        endUse(stack, world);
-        return stack;
-    }
-
-    private void endUse(ItemStack stack, World world) {
-        NbtCompound compound = getOrCreateNbt(stack);
-        if (compound == null) return;
-
-        UUID uuid = compound.getUuid(WIRELESS_HANDHELD_UUID);
-        compound.putBoolean(WIRELESS_HANDHELD_ENABLED, false);
-
-
-        WirelessRedstone.sendTickScheduleToReceivers(world);
-    }
-
-    public boolean isUsedOnRelease(ItemStack stack) {
-        return stack.isOf(this);
     }
 
     @Override

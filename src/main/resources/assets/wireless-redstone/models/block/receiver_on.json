@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/cube_all",
+  "parent": "minecraft:block/cube_column",
   "textures": {
-    "all": "wireless-redstone:block/receiver_on"
+    "side": "wireless-redstone:block/receiver_on",
+    "end": "wireless-redstone:block/receiver_side"
   }
 }

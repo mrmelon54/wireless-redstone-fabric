@@ -1,0 +1,10 @@
+{
+    "block.wireless-redstone.transmitter": "Transmissor sem fio Redstone",
+    "block.wireless-redstone.receiver": "Receptor sem fio Redstone",
+    "item.wireless-redstone.handheld": "Dispositivo portátil Redstone sem fio",
+    "item.wireless-redstone.item.tooltip-frequency": "Frequência: %d",
+    "screen.wireless-redstone.set_frequency": "Definir frequência",
+    "screen.wireless-redstone.error": "Erro",
+    "screen.wireless-redstone.ok": "OK",
+    "screen.wireless-redstone.error_message": "Inteiro iIválido"
+}  

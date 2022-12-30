@@ -32,7 +32,7 @@
   "depends": {
     "fabricloader": ">=0.14.0",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": ">=1.19.3",
     "libgui": ">=5.9.9"
   },
   "custom": {

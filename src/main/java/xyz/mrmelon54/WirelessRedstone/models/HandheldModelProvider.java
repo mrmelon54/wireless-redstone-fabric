@@ -1,6 +1,6 @@
 package xyz.mrmelon54.WirelessRedstone.models;
 
-import net.minecraft.client.item.UnclampedModelPredicateProvider;
+import net.minecraft.client.item.ClampedModelPredicateProvider;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
@@ -9,7 +9,7 @@ import org.jetbrains.annotations.Nullable;
 import xyz.mrmelon54.WirelessRedstone.WirelessRedstone;
 import xyz.mrmelon54.WirelessRedstone.item.WirelessHandheldItem;
 
-public class HandheldModelProvider implements UnclampedModelPredicateProvider {
+public class HandheldModelProvider implements ClampedModelPredicateProvider {
     @Override
     public float unclampedCall(ItemStack stack, @Nullable ClientWorld world, @Nullable LivingEntity entity, int seed) {
         if (stack != null && !stack.isEmpty()) {

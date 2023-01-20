@@ -1,0 +1,8 @@
+{
+  "block.wireless_redstone.transmitter": "無線紅石發射器",
+  "block.wireless_redstone.receiver": "無線紅石接收器",
+  "screen.wireless_redstone.set_frequency": "設定頻率",
+  "screen.wireless_redstone.error": "錯誤",
+  "screen.wireless_redstone.ok": "OK",
+  "screen.wireless_redstone.error_message": "無效數值"
+}

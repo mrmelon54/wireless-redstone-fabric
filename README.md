@@ -26,6 +26,8 @@ From v3.0.0 there is a handheld device that players can use to trigger receivers
 
 Right-click the handheld to toggle on/off state. The state remains even if the handheld is put in a chest or if the player holding it logs off.
 
+To change the frequency hold shift + right click to open the frequency changing screen.
+
 ## Discord
 
 - https://discord.gg/usbmdrJ

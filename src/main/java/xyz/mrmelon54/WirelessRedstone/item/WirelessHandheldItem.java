@@ -3,10 +3,10 @@ package xyz.mrmelon54.WirelessRedstone.item;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
-import net.minecraft.item.*;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.screen.NamedScreenHandlerFactory;
@@ -55,16 +55,18 @@ public class WirelessHandheldItem extends Item implements NamedScreenHandlerFact
         if (compound == null) return TypedActionResult.fail(itemStack);
 
         boolean v = !compound.getBoolean(WIRELESS_HANDHELD_ENABLED);
-        UUID uuid = compound.getUuid(WIRELESS_HANDHELD_UUID);
         compound.putBoolean(WIRELESS_HANDHELD_ENABLED, v);
         int freq = compound.getInt(WIRELESS_HANDHELD_FREQ);
 
         Set<TransmittingHandheldEntry> handheld = MyComponents.FrequencyStorage.get(world).getHandheld();
         if (v) {
-            UUID uuid1 = UUID.randomUUID();
-            compound.putUuid(WIRELESS_HANDHELD_UUID, uuid1);
-            handheld.add(new TransmittingHandheldEntry(uuid1, freq));
-        } else handheld.removeIf(transmittingFrequencyEntry -> transmittingFrequencyEntry.handheldUuid().equals(uuid));
+            UUID uuid = UUID.randomUUID();
+            compound.putUuid(WIRELESS_HANDHELD_UUID, uuid);
+            handheld.add(new TransmittingHandheldEntry(uuid, freq));
+        } else {
+            UUID uuid = compound.getUuid(WIRELESS_HANDHELD_UUID);
+            handheld.removeIf(transmittingFrequencyEntry -> transmittingFrequencyEntry.handheldUuid().equals(uuid));
+        }
 
         WirelessRedstone.sendTickScheduleToReceivers(world);
         return TypedActionResult.consume(itemStack);

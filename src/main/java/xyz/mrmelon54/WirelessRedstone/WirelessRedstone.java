@@ -17,6 +17,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.resource.featuretoggle.FeatureSet;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.state.property.Properties;
@@ -62,7 +63,7 @@ public class WirelessRedstone implements ModInitializer {
             HandheldItemUtils.addHandheldFromPlayer(player, destination);
         });
 
-        WIRELESS_FREQUENCY_SCREEN = Registry.register(Registries.SCREEN_HANDLER, new Identifier("wireless-redstone", "frequency-screen"), new ScreenHandlerType<>(((syncId, inventory) -> new WirelessFrequencyGuiDescription(syncId, inventory, ScreenHandlerContext.EMPTY))));
+        WIRELESS_FREQUENCY_SCREEN = Registry.register(Registries.SCREEN_HANDLER, new Identifier("wireless-redstone", "frequency-screen"), new ScreenHandlerType<>(((syncId, inventory) -> new WirelessFrequencyGuiDescription(syncId, inventory, ScreenHandlerContext.EMPTY)), FeatureSet.empty()));
 
         Registry.register(Registries.BLOCK, new Identifier("wireless-redstone", "transmitter"), WIRELESS_TRANSMITTER);
         Registry.register(Registries.ITEM, new Identifier("wireless-redstone", "transmitter"), WIRELESS_TRANSMITTER_ITEM);

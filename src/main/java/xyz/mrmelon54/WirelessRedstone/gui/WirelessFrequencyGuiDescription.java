@@ -29,6 +29,8 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
+import static xyz.mrmelon54.WirelessRedstone.item.WirelessHandheldItem.WIRELESS_HANDHELD_UUID;
+
 public class WirelessFrequencyGuiDescription extends SyncedGuiDescription {
     final Pattern numericCheckerPattern = Pattern.compile("^ ?-?[0-9]*$");
     static final int PROPERTY_COUNT = 1;
@@ -57,13 +59,18 @@ public class WirelessFrequencyGuiDescription extends SyncedGuiDescription {
                         if (compound == null) return;
 
                         boolean enabled = compound.getBoolean(WirelessHandheldItem.WIRELESS_HANDHELD_ENABLED);
-                        UUID uuid = compound.getUuid(WirelessHandheldItem.WIRELESS_HANDHELD_UUID);
                         compound.putInt(WirelessHandheldItem.WIRELESS_HANDHELD_FREQ, value);
 
                         // remove old transmit signal and replace it
                         Set<TransmittingHandheldEntry> handheld = MyComponents.FrequencyStorage.get(world).getHandheld();
-                        handheld.removeIf(transmittingFrequencyEntry -> transmittingFrequencyEntry.handheldUuid().equals(uuid));
-                        if (enabled) handheld.add(new TransmittingHandheldEntry(uuid, value));
+                        if (enabled) {
+                            UUID uuid = compound.getUuid(WIRELESS_HANDHELD_UUID);
+                            handheld.removeIf(transmittingFrequencyEntry -> transmittingFrequencyEntry.handheldUuid().equals(uuid));
+
+                            UUID uuid1 = UUID.randomUUID();
+                            compound.putUuid(WIRELESS_HANDHELD_UUID, uuid1);
+                            handheld.add(new TransmittingHandheldEntry(uuid1, value));
+                        }
 
                         if (world != null) WirelessRedstone.sendTickScheduleToReceivers(world);
                     }
@@ -141,7 +148,7 @@ public class WirelessFrequencyGuiDescription extends SyncedGuiDescription {
     }
 
     @Override
-    public void close(PlayerEntity playerEntity) {
-        super.close(playerEntity);
+    public void onClosed(PlayerEntity playerEntity) {
+        super.onClosed(playerEntity);
     }
 }

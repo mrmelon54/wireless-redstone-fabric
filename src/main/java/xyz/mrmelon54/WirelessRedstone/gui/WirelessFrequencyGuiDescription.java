@@ -109,7 +109,7 @@ public class WirelessFrequencyGuiDescription extends SyncedGuiDescription {
         wButton.setLabel(Text.translatable("screen.wireless-redstone.set_frequency"));
         wButton.setOnClick(() -> {
             String s = wTextField.getText();
-            if (playerInventory.player.world.isClient() && numericCheckerPattern.matcher(s).find()) {
+            if (playerInventory.player.getWorld().isClient() && numericCheckerPattern.matcher(s).find()) {
                 String t = s.trim();
                 boolean parsed = false;
                 try {

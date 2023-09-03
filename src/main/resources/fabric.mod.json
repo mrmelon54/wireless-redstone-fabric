@@ -30,10 +30,10 @@
     "WirelessRedstone.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.14.0",
+    "fabricloader": ">=0.14.22",
     "fabric": "*",
-    "minecraft": ">=1.19.4",
-    "libgui": ">=5.9.9"
+    "minecraft": ">=1.20.1",
+    "libgui": ">=8.0.2"
   },
   "custom": {
     "cardinal-components": [

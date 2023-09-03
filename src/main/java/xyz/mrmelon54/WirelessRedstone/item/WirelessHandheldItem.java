@@ -93,7 +93,7 @@ public class WirelessHandheldItem extends Item implements NamedScreenHandlerFact
     @Nullable
     @Override
     public ScreenHandler createMenu(int syncId, PlayerInventory inv, PlayerEntity player) {
-        return new WirelessFrequencyGuiDescription(syncId, inv, new HandheldScreenHandlerContext(player, player.world, WirelessRedstone.ImpossibleBlockPos));
+        return new WirelessFrequencyGuiDescription(syncId, inv, new HandheldScreenHandlerContext(player, player.getWorld(), WirelessRedstone.ImpossibleBlockPos));
     }
 
     public static NbtCompound getOrCreateNbt(ItemStack stack) {
@@ -122,9 +122,9 @@ public class WirelessHandheldItem extends Item implements NamedScreenHandlerFact
         UUID uuid = compound.getUuid(WIRELESS_HANDHELD_UUID);
         compound.putBoolean(WIRELESS_HANDHELD_ENABLED, false);
 
-        Set<TransmittingHandheldEntry> handheld = MyComponents.FrequencyStorage.get(entity.world).getHandheld();
+        Set<TransmittingHandheldEntry> handheld = MyComponents.FrequencyStorage.get(entity.getWorld()).getHandheld();
         handheld.removeIf(transmittingFrequencyEntry -> transmittingFrequencyEntry.handheldUuid().equals(uuid));
 
-        WirelessRedstone.sendTickScheduleToReceivers(entity.world);
+        WirelessRedstone.sendTickScheduleToReceivers(entity.getWorld());
     }
 }

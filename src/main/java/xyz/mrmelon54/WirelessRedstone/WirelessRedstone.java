@@ -10,7 +10,6 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
-import net.minecraft.block.Material;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -37,9 +36,9 @@ import xyz.mrmelon54.WirelessRedstone.util.HandheldItemUtils;
 import xyz.mrmelon54.WirelessRedstone.util.NetworkingConstants;
 
 public class WirelessRedstone implements ModInitializer {
-    public static final Block WIRELESS_TRANSMITTER = new WirelessTransmitterBlock(FabricBlockSettings.of(Material.METAL).collidable(true).strength(0).luminance(value -> value.get(Properties.LIT) ? 7 : 0));
+    public static final Block WIRELESS_TRANSMITTER = new WirelessTransmitterBlock(FabricBlockSettings.create().collidable(true).strength(0).luminance(value -> value.get(Properties.LIT) ? 7 : 0));
     public static final BlockItem WIRELESS_TRANSMITTER_ITEM = new BlockItem(WIRELESS_TRANSMITTER, new FabricItemSettings().maxCount(64));
-    public static final Block WIRELESS_RECEIVER = new WirelessReceiverBlock(FabricBlockSettings.of(Material.METAL).collidable(true).strength(0).luminance(value -> value.get(Properties.LIT) ? 7 : 0));
+    public static final Block WIRELESS_RECEIVER = new WirelessReceiverBlock(FabricBlockSettings.create().collidable(true).strength(0).luminance(value -> value.get(Properties.LIT) ? 7 : 0));
     public static final BlockItem WIRELESS_RECEIVER_ITEM = new BlockItem(WIRELESS_RECEIVER, new FabricItemSettings().maxCount(64));
     public static final Item WIRELESS_HANDHELD = new WirelessHandheldItem(new FabricItemSettings().maxCount(1));
     public static BlockEntityType<WirelessTransmitterBlockEntity> WIRELESS_TRANSMITTER_BLOCK_ENTITY;
@@ -48,8 +47,8 @@ public class WirelessRedstone implements ModInitializer {
     public static final BlockPos ImpossibleBlockPos = BlockPos.ORIGIN.offset(Direction.DOWN, 30000);
 
     public void onInitialize() {
-        ServerPlayConnectionEvents.INIT.register((handler, server) -> HandheldItemUtils.addHandheldFromPlayer(handler.player, handler.player.world));
-        ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> HandheldItemUtils.removeHandheldFromPlayer(handler.player, handler.player.world));
+        ServerPlayConnectionEvents.INIT.register((handler, server) -> HandheldItemUtils.addHandheldFromPlayer(handler.player, handler.player.getWorld()));
+        ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> HandheldItemUtils.removeHandheldFromPlayer(handler.player, handler.player.getWorld()));
         ServerChunkEvents.CHUNK_LOAD.register(HandheldItemUtils::addHandheldFromChunk);
         ServerChunkEvents.CHUNK_UNLOAD.register(HandheldItemUtils::removeHandheldFromChunk);
 

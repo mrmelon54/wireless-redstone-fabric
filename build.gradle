@@ -17,11 +17,11 @@ repositories {
     // for more information about repositories.
     maven {
         name = 'CottonMC'
-        url = 'https://server.bbkr.space/artifactory/libs-release'
+        url = "https://server.bbkr.space/artifactory/libs-release"
     }
     maven {
         name = 'Ladysnake Mods'
-        url = 'https://ladysnake.jfrog.io/artifactory/mods'
+        url = 'https://maven.ladysnake.org/releases'
     }
 }
 

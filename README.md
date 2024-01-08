@@ -1,5 +1,7 @@
 # Melon Wireless Redstone
 
+# Moved to [wireless_redstone](https://github.com/mrmelon54/wireless_redstone)
+
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W1607S8)
 
 Requires the [Fabric Loader](https://fabricmc.net/use/), [Fabric API](https://modrinth.com/mod/fabric-api) and [Cardinal Components](https://modrinth.com/mod/cardinal-components-api)
